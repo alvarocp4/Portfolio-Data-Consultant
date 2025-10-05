@@ -1,24 +1,13 @@
-# Astro + Starwind UI Blog Template
+# Personal Portfolio - Alvaro Carmona
 
-<img width="1536" height="1024" alt="free-astro-theme" src="https://github.com/user-attachments/assets/0419a038-def9-4e88-916d-23add03ce366" />
+My personal portfolio developed with Astro, showcasing my professional experience, certifications and personal projects.
 
-Production-ready Astro blog using Tailwind CSS v4 and Starwind UI patterns, with a full theming system via CSS variables and reusable `.astro` components.
+## 🎯 Portfolio Sections
 
-Demo at https://free-astro-template.netlify.app/
-
-## ✨ Features
-
-- ✅ Astro SSG with fast dev experience
-- ✅ Tailwind CSS v4 + Starwind UI patterns and theming
-- ✅ Dark theme via CSS variables (`.dark` / `[data-theme="dark"]`)
-- ✅ Centralized data in TypeScript (`skills`, `work`, `studies`, `projects`, `logos`)
-- ✅ Reusable UI components (Badge, Button, Timeline, Carousel, Separators)
-- ✅ Organized sections (Header, Hero, Skills, Work Experience, Studies, Footer)
-- ✅ Blog with Markdown & MDX content collections
-- ✅ SEO: canonical URLs, OpenGraph, sitemap, RSS feed, sharing icons, etc
-- ✅ Accessibility-oriented tokens (contrast-ready) and card surface utilities
-
-<img width="941" height="519" alt="image" src="https://github.com/user-attachments/assets/e88187b8-6ed1-459e-bb81-61b64e06ee2a" />
+- **Skills & Tools**: Profesional skills and tools
+- **Experience**: Profesional Experience
+- **Certifications**: Technical certifications obtained
+- **Projects**: Personal prtojects
 
 ## 🔧 Requirements
 
