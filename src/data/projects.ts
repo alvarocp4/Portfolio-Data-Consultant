@@ -1,9 +1,9 @@
-import PhoenixIcon from '../assets/logos/Phoenix-logo.svg?raw';
-import N8nIcon from '../assets/logos/N8n-logo.svg?raw';
-import SupabaseIcon from '../assets/logos/Supabase-logo.svg?raw';
-import PosthogIcon from '../assets/logos/posthog-logo.svg?raw';
+import PhoenixIcon from '../assets/logos/Tableau-logo.svg?raw';
+import N8nIcon from '../assets/logos/PowerApps-logo.svg?raw';
+import SupabaseIcon from '../assets/logos/PowerAutomate-logo.svg?raw';
+import PosthogIcon from '../assets/logos/PowerBI-logo.svg?raw';
 import PythonIcon from '../assets/logos/Python-logo.svg?raw';
-import TailwindIcon from '../assets/logos/Tailwind-logo.svg?raw';
+import TailwindIcon from '../assets/logos/Airflow-logo.svg?raw';
 
 
 export const projects = [

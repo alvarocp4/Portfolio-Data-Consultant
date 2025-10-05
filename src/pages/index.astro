@@ -4,6 +4,7 @@ import Footer from '../components/sections/Footer.astro';
 import Header from '../components/sections/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import HeroSection from '../components/sections/HeroSection.astro';
+import PorjectS from '../components/sections/Projects.astro';
 import SkillsSection from '../components/sections/SkillsSection.astro';
 import { skills } from '../data/skills';
 import WorkExperience from '../components/sections/WorkExperience.astro';
@@ -21,6 +22,7 @@ import googleAdsLogo from '../assets/logos/GoogleAds-logo.svg';
 import posthogLogo from '../assets/logos/posthog-logo.svg';
 import notionLogo from '../assets/logos/Notion-logo.svg';
 import figmaLogo from '../assets/logos/Figma-logo.svg';
+import Projects from '@/components/sections/Projects.astro';
 
 // skills are imported from src/data/skills
 ---
@@ -37,8 +39,8 @@ import figmaLogo from '../assets/logos/Figma-logo.svg';
       url: new URL('/', Astro.site).toString(),
       logo: new URL('/favicon.svg', Astro.site).toString(),
       sameAs: [
-        'https://x.com/guihubie',
-        'https://www.linkedin.com/in/guilherme-hubie/',
+        'https://github.com/alvarocp4/Portfolio-Data-Consultant',
+        'https://www.linkedin.com/in/alvarocarmonapedrajas-bd-da-bi/',
       ],
     })} />
 	</head>
@@ -61,6 +63,8 @@ import figmaLogo from '../assets/logos/Figma-logo.svg';
       <WorkExperience title="Work Experience" items={work} />
       <ArrowSeparator />
       <Studies title="Studies" items={studies} />
+      <ArrowSeparator />
+      <PorjectS title="Projects" />
       <GlowLineSeparator />
     </section>
 		</main>
