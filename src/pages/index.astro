@@ -30,7 +30,7 @@ import Projects from '@/components/sections/Projects.astro';
 ---
 
 <!doctype html>
-<html lang="en" data-theme="dark" class="dark">
+<html lang="en" data-theme="dark" class="dark scroll-smooth">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <!-- JSON-LD: Organization -->
@@ -63,8 +63,6 @@ import Projects from '@/components/sections/Projects.astro';
       <SkillsSection title="Skills & Tools" skills={skills} />   
       <ArrowSeparator />
       <WorkExperience title="Work Experience" items={work} />
-      <ArrowSeparator />
-      <Studies title="Studies" items={studies} />
       <ArrowSeparator />
       <PorjectS title="Projects" />
       <GlowLineSeparator />
