@@ -1,0 +1,228 @@
+---
+import type { BadgeItem } from '../../data/badges';
+import { badges } from '../../data/badges';
+import { Image } from 'astro:assets';
+
+// Importar imágenes de certificaciones
+import Snowflakelogo from '../../assets/badges/AWSCLFC02-badge.png';
+import AWSLogo from '../../assets/badges/AirflowDAG-badge.png';
+import PowerBILogo from '../../assets/badges/Airflowfundamentals-badge.png';
+// Import 
+import FabricLogo from '../../assets/logos/Jenkins-logo.svg';
+import StanfordLogo from '../../assets/logos/Tableau-logo.svg';
+import XuntaLogo from '../../assets/logos/Jira-logo.svg';
+import CambridgeLogo from '../../assets/logos/Airflow-logo.svg';
+
+interface Props { title?: string; }
+const { title } = Astro.props as Props;
+
+// badgesList sin URL
+const badgesList: BadgeItem[] = badges.map(b => ({ name: b.name, badge: b.badge }));
+---
+
+<section id="certifications" class="w-full py-10 scroll-mt-16">
+  <div class="mx-auto max-w-6xl px-4">
+    <!-- Header -->
+    {title && (
+      <h2 class="text-3xl md:text-4xl font-semibold text-center mb-8 text-foreground">{title}</h2>
+    )}
+
+    <div class="flex flex-col gap-12">
+      <!-- Sección de Certificaciones -->
+      <div class="certifications-section">
+        <!-- Medallas en línea horizontal -->
+        <div class="flex flex-wrap justify-center gap-6">
+            {badgesList.map((badge) => (
+            <div class="flex flex-col items-center justify-center px-4 py-6 min-w-[120px] md:min-w-[140px] rounded-lg">
+                <div class="cert-image-wrapper w-50 h-50 mb-2 flex items-center justify-center bg-none p-4 rounded-xl shadow-md transition-transform" data-cert={badge.name}>
+                    <img src={badge.badge} alt={badge.name} class="w-full h-full object-contain" />
+                </div>
+                <span class="text-sm font-semibold text-center text-[color:var(--color-text-muted)]">{badge.name}</span>
+            </div>
+            ))}
+        </div>
+
+        <!-- Card de información dinámica -->
+        <div class="mt-8 certification-info-card grid grid-cols-1 gap-6 md:grid-cols-1" data-aos="fade-up" data-aos-delay="400">
+          <!-- SnowPro -->
+          <div class="card-surface p-4 md:p-6 w-full min-w-0" id="cert-snowpro">
+            <div class="flex justify-between items-center">
+              <div>
+                <span class="cert-badge font-bold text-blue-600 text-lg">COF-C02</span>
+                <h4 class="mt-2 text-xl font-semibold">SnowPro Core Certification</h4>
+                <p class="mt-1 text-gray-600 text-sm">Perform data loading and transformation. Monitor and optimize virtual warehouse performance and concurrencies. Execute DDL and DML queries. Use structured, semi-structured, and unstructured data.</p>
+              </div>
+              <div class="ml-4">
+                <Image src={Snowflakelogo} alt="Snowflake" class="w-10 h-10" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Azure -->
+          <div class="card-surface p-4 md:p-6 w-full min-w-0" id="cert-azure">
+            <div class="flex justify-between items-center">
+              <div>
+                <span class="cert-badge font-bold text-blue-600 text-lg">AZ-900</span>
+                <h4 class="mt-2 text-xl font-semibold">Azure Fundamentals</h4>
+                <p class="mt-1 text-gray-600 text-sm">Foundational knowledge of cloud services and how those services are provided with Microsoft Azure platform.</p>
+              </div>
+              <div class="ml-4">
+                <Image src={AWSLogo} alt="Microsoft" class="w-10 h-10" />
+              </div>
+            </div>
+          </div>
+
+          <!-- PowerBI -->
+          <div class="card-surface p-4 md:p-6 w-full min-w-0" id="cert-powerbi">
+            <div class="flex justify-between items-center">
+              <div>
+                <span class="cert-badge font-bold text-blue-600 text-lg">PL-300</span>
+                <h4 class="mt-2 text-xl font-semibold">Power BI Data Analyst Associate</h4>
+                <p class="mt-1 text-gray-600 text-sm">Advanced skills in data analysis, visualization, and business intelligence using Microsoft Power BI platform.</p>
+              </div>
+              <div class="ml-4">
+                <Image src={PowerBILogo} alt="Microsoft" class="w-10 h-10" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Fabric -->
+          <div class="card-surface p-4 md:p-6 w-full min-w-0" id="cert-fabric">
+            <div class="flex justify-between items-center">
+              <div>
+                <span class="cert-badge font-bold text-blue-600 text-lg">DP-600</span>
+                <h4 class="mt-2 text-xl font-semibold">Fabric Analytics Engineer Associate</h4>
+                <p class="mt-1 text-gray-600 text-sm">Expertise in implementing and managing comprehensive analytics solutions using Microsoft Fabric platform.</p>
+              </div>
+              <div class="ml-4">
+                <Image src={FabricLogo} alt="Microsoft" class="w-10 h-10" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sección de Cursos -->
+      <div class="courses-section">
+        <h3 class="text-2xl font-bold text-center mb-6">
+          <span class="text-gradient">Additional Learning</span>
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 additional-learning-grid">
+          <div class="card-surface p-4 md:p-6 w-full min-w-0" data-aos="fade-up" data-aos-delay="500" data-url="https://www.coursera.org/account/accomplishments/verify/R55VSN2PEMW9">
+            <div class="flex items-center gap-4">
+              <Image src={StanfordLogo} alt="Stanford University" class="w-14 h-14" />
+              <div>
+                <h4 class="text-md font-semibold learning-title">Course on Machine Learning by <a href="https://www.linkedin.com/in/andrewyng/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Andrew Ng</a></h4>
+                <p class="text-sm text-gray-600 learning-provider">Stanford University</p>
+                <div class="mt-1">
+                  <span class="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded-full">Machine Learning</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sección de Idiomas -->
+      <div class="languages-section">
+        <h3 class="text-2xl font-bold text-center mb-6">
+          <span class="text-gradient">Languages</span>
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 languages-grid">
+          <!-- CELGA 4 -->
+          <div class="card-surface p-4 md:p-6 w-full min-w-0" data-aos="fade-up" data-aos-delay="700">
+            <div class="flex items-center gap-4">
+              <Image src={XuntaLogo} alt="Xunta de Galicia" class="w-14 h-14" />
+              <div>
+                <h4 class="text-md font-semibold learning-title">CELGA 4</h4>
+                <p class="text-sm text-gray-600 learning-provider">Government of Galicia</p>
+                <div class="mt-1">
+                  <span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full language-tag">Galician</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- B2 First -->
+          <div class="card-surface p-4 md:p-6 w-full min-w-0" data-aos="fade-up" data-aos-delay="800">
+            <div class="flex items-center gap-4">
+              <Image src={CambridgeLogo} alt="Cambridge English" class="w-14 h-14" />
+              <div>
+                <h4 class="text-md font-semibold learning-title">B2 First</h4>
+                <p class="text-sm text-gray-600 learning-provider">Cambridge English</p>
+                <div class="mt-1">
+                  <span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full language-tag">English</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const isMobile = window.innerWidth <= 768;
+  // Select all badge elements
+  const badgeWrappers = document.querySelectorAll('.cert-image-wrapper');
+
+  badgeWrappers.forEach((el) => {
+    const htmlElement = el as HTMLElement; // Type assertion for TypeScript
+
+    // Hover effect only on desktop
+    if (!isMobile) {
+      htmlElement.addEventListener('mouseenter', () => {
+        htmlElement.style.transition = 'transform 0.2s ease, filter 0.2s ease';
+        htmlElement.style.cursor = 'default';
+        htmlElement.style.filter = 'brightness(1.2) drop-shadow(0 0 15px rgba(255, 165, 0, 0.6))';
+      });
+
+      htmlElement.addEventListener('mousemove', (e) => {
+        const rect = htmlElement.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const deltaX = (e.clientX - centerX) / (rect.width / 2);
+        const deltaY = (e.clientY - centerY) / (rect.height / 2);
+
+        const maxRotation = 20;
+        const rotateX = Math.max(-maxRotation, Math.min(maxRotation, deltaY * maxRotation));
+        const rotateY = Math.max(-maxRotation, Math.min(maxRotation, -deltaX * maxRotation));
+
+        htmlElement.style.transform = `scale(1.15) perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+
+      htmlElement.addEventListener('mouseleave', () => {
+        htmlElement.style.transform = 'scale(1) perspective(600px) rotateX(0deg) rotateY(0deg)';
+        htmlElement.style.filter = '';
+      });
+    }
+
+    // Click effect (open URL if exists)
+    htmlElement.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      // Click visual effect
+      const currentTransform = htmlElement.style.transform || '';
+      htmlElement.style.transition = 'transform 0.1s ease';
+      htmlElement.style.transform = `${currentTransform} scale(0.95)`;
+
+      setTimeout(() => {
+        // Restore hover transform or default
+        htmlElement.style.transform = !isMobile
+          ? 'scale(1.15) perspective(600px) rotateX(0deg) rotateY(0deg)'
+          : 'scale(1)';
+
+        // Open URL if present
+        const url = htmlElement.dataset.url;
+        if (url) window.open(url, '_blank', 'noopener,noreferrer');
+      }, 100);
+    });
+  });
+});
+</script>
+
