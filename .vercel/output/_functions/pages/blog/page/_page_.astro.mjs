@@ -1,6 +1,6 @@
 import { d as createAstro, c as createComponent, r as renderComponent, a as renderHead, e as addAttribute, b as renderTemplate } from '../../../chunks/astro/server_DaZi--al.mjs';
 import 'kleur/colors';
-import { g as getCollection } from '../../../chunks/_astro_content_E7qiaSVH.mjs';
+import { g as getCollection } from '../../../chunks/_astro_content_BL-AHx7z.mjs';
 import { $ as $$BaseHead, a as $$Header, b as $$Footer } from '../../../chunks/Footer_zhXZ_RHu.mjs';
 import { $ as $$BlogHero, a as $$BlogAllArticles, b as $$BlogPagination } from '../../../chunks/BlogPagination_F2vJyICK.mjs';
 export { renderers } from '../../../renderers.mjs';
