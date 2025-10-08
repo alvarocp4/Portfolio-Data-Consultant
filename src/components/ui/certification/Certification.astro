@@ -1,0 +1,169 @@
+---
+import { certifications } from '../../../data/badgesDetails';
+import type { BadgeItem } from '../../../data/badges';
+import { badges } from '../../../data/badges';
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+// Importar imágenes de certificaciones
+import CambridgeLogo from '../../../assets/images/Cambridge-logo.png';
+
+interface Props { title?: string; }
+const { title } = Astro.props as Props;
+
+// Ajuste del tipo según la estructura real
+interface Certification {
+  id: string;
+  code: string;
+  title: string;
+  description: string;
+  logo: ImageMetadata;
+  url?: string;
+}
+
+// badgesList sin URL
+const badgesList: BadgeItem[] = badges.map(b => ({ name: b.name, badge: b.badge, url: b.url }));
+
+// certificationsData según la estructura real
+const certificationsData: Certification[] = certifications.map((c) => ({
+  ...c
+}));
+---
+
+<div class="flex flex-col gap-12 shadow-m">
+  <!-- Sección de Certificaciones -->
+  <div class="certifications-section">
+    <!-- Medallas en línea horizontal -->
+    <div class="flex flex-wrap justify-center gap-6">
+      {badgesList.map((badge) => {
+        const cert = certificationsData.find(c => c.code === badge.name || c.id === badge.name);
+        return (
+          <div class="flex flex-col items-center justify-center px-4 py-6 min-w-[120px] md:min-w-[140px] rounded-lg cursor-pointer">
+            <div 
+              class="cert-image-wrapper w-50 h-50 mb-2 flex items-center justify-center bg-none p-4 rounded-xl border-none transition-transform"
+              data-cert-json={JSON.stringify(cert)}
+              data-url={badge.url}
+            >
+              <img src={badge.badge} alt={badge.name} class="w-full h-full object-contain" />
+            </div>
+            <span class="text-sm font-semibold text-center text-[color:var(--color-text-muted)]">{badge.name}</span>
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- Card de información dinámica -->
+    <div class="mt-8 certification-info-card grid grid-cols-1 gap-6 md:grid-cols-1" data-aos="fade-up" data-aos-delay="400">
+      <div class="card-surface p-4 md:p-6 w-full min-w-0 min-h-50" id="active-cert-card">
+        <div class="flex justify-between items-center">
+          <div>
+            <span class="text-md font-semibold learning-title rounded-full px-3 py-1" style="background: rgba(var(--accent-rgb),0.1); color: var(--accent); border: 1px solid rgba(var(--accent-rgb),0.3);">{certificationsData[0].code}</span>
+            <h4 class="mt-2 text-xl font-semibold pt-5">{certificationsData[0].title}</h4>
+            <p class="mt-1 text-gray-600 text-sm">{certificationsData[0].description}</p>
+          </div>
+          <div class="ml-4 w-10 h-10 flex items-center">
+            <img src={certificationsData[0].logo?.src} alt={certificationsData[0].title} class="w-10 h-10" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DE MOMENTO DEJAR, YA VERE QUE HACER -->
+    <div class="languages-section pt-8">
+      <h3 class="text-2xl font-bold text-center mb-6">
+        <span class="text-gradient">Languages</span>
+      </h3>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 languages-grid pt-5">
+        <!-- B2 First -->
+        <div class="card-surface p-4 md:p-6 w-full min-w-0" data-aos="fade-up" data-aos-delay="800">
+          <div class="flex items-center gap-4">
+            <Image src={CambridgeLogo} alt="Cambridge English" class="w-14 h-14" />
+            <div>
+              <h4 class="text-md font-semibold learning-title">B2 First</h4>
+              <p class="text-sm text-gray-600 learning-provider">Cambridge English</p>
+              <div class="mt-1">
+                <span class="inline-flex items-center rounded-full px-3 py-1 text-xs font-medium" style="background: rgba(var(--accent-rgb),0.1); color: var(--accent); border: 1px solid rgba(var(--accent-rgb),0.3);">English</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+document.addEventListener('DOMContentLoaded', () => {
+  const isMobile = window.innerWidth <= 768;
+  const badgeWrappers = document.querySelectorAll('.cert-image-wrapper');
+  const infoCard = document.getElementById('active-cert-card');
+
+  badgeWrappers.forEach((htmlElement) => {
+    if (!isMobile) {
+      htmlElement.addEventListener('mouseenter', () => {
+        htmlElement.style.transition = 'transform 0.2s ease, filter 0.2s ease';
+        htmlElement.style.cursor = 'pointer';
+        htmlElement.style.filter = 'drop-shadow(0 5px 10px rgba(0, 0, 0, 0.4))';
+
+        if (infoCard) {
+          const certData = JSON.parse(htmlElement.dataset.certJson || '{}');
+          infoCard.style.transition = 'opacity 0.2s ease';
+          infoCard.style.opacity = '0';
+
+          setTimeout(() => {
+            const codeEl = infoCard.querySelector('.learning-title');
+            const titleEl = infoCard.querySelector('h4');
+            const descEl = infoCard.querySelector('p');
+            const imgEl = infoCard.querySelector('img');
+
+            if (codeEl) codeEl.textContent = certData.code;
+            if (titleEl) titleEl.textContent = certData.title;
+            if (descEl) descEl.textContent = certData.description;
+            if (imgEl) imgEl.src = certData.logo?.src;
+
+            infoCard.style.opacity = '1';
+          }, 200);
+        }
+      });
+
+      htmlElement.addEventListener('mousemove', (e) => {
+        const rect = htmlElement.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const deltaX = (e.clientX - centerX) / (rect.width / 2);
+        const deltaY = (e.clientY - centerY) / (rect.height / 2);
+
+        const maxRotation = 35;
+        const scaleFactor = 1.15;
+        const rotateX = Math.max(-maxRotation, Math.min(maxRotation, deltaY * maxRotation));
+        const rotateY = Math.max(-maxRotation, Math.min(maxRotation, -deltaX * maxRotation));
+
+        htmlElement.style.transform = `scale(${scaleFactor}) perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+
+      htmlElement.addEventListener('mouseleave', () => {
+        htmlElement.style.transform = 'scale(1) perspective(600px) rotateX(0deg) rotateY(0deg)';
+        htmlElement.style.filter = '';
+      });
+    }
+
+    htmlElement.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const currentTransform = htmlElement.style.transform || '';
+      htmlElement.style.transition = 'transform 0.1s ease';
+      htmlElement.style.transform = `${currentTransform} scale(0.95)`;
+
+      setTimeout(() => {
+        htmlElement.style.transform = !isMobile
+          ? 'scale(1.15) perspective(600px) rotateX(0deg) rotateY(0deg)'
+          : 'scale(1)';
+
+        const url = htmlElement.dataset.url;
+        if (url) window.open(url, '_blank', 'noopener,noreferrer');
+      }, 100);
+    });
+  });
+});
+</script>

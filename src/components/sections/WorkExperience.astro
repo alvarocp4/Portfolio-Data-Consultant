@@ -23,8 +23,9 @@ const { items, title } = Astro.props as Props;
     {title && (
       <h2 class="text-3xl md:text-4xl font-semibold text-center mb-10 text-foreground">{title}</h2>
     )}
-
-    <Timeline items={items} icons={workIcons} centered={false}/>
+    <div class="pt-5">
+      <Timeline items={items} icons={workIcons} centered={false}/>
+    </div>
   </div>
 </section>
 

@@ -34,5 +34,5 @@ export const badges: BadgeItem[] = Object.entries(modules)
     const name = toNiceName(path); // define name primero
     return { name, badge: url as string, url: badgeUrls[name] || "#"};
   })
-  .sort((a, b) => a.name.localeCompare(b.name));
+  .sort((a, b) => b.name.localeCompare(a.name));
 export type { BadgeItem }
