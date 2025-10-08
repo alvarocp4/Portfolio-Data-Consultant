@@ -1,6 +1,6 @@
 import { d as createAstro, c as createComponent, r as renderComponent, b as renderTemplate } from '../../chunks/astro/server_DaZi--al.mjs';
 import 'kleur/colors';
-import { g as getCollection, r as renderEntry } from '../../chunks/_astro_content_CkURgNzm.mjs';
+import { g as getCollection, r as renderEntry } from '../../chunks/_astro_content_E7qiaSVH.mjs';
 import { $ as $$BlogPost } from '../../chunks/BlogPost_DiHQ67Bp.mjs';
 import { c as calculateReadingTimeFromHtml } from '../../chunks/reading_m1Sy0aiN.mjs';
 export { renderers } from '../../renderers.mjs';
