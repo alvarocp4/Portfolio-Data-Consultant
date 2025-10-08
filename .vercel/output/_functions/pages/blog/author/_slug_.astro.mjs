@@ -1,6 +1,6 @@
 import { d as createAstro, c as createComponent, r as renderComponent, a as renderHead, b as renderTemplate } from '../../../chunks/astro/server_DaZi--al.mjs';
 import 'kleur/colors';
-import { g as getCollection } from '../../../chunks/_astro_content_BL-AHx7z.mjs';
+import { g as getCollection } from '../../../chunks/_astro_content_hlyIJ5yn.mjs';
 import { $ as $$BaseHead, a as $$Header, b as $$Footer } from '../../../chunks/Footer_zhXZ_RHu.mjs';
 import { $ as $$PostCard } from '../../../chunks/PostCard_DkRTz6HI.mjs';
 import { s as slugifyTag } from '../../../chunks/slug_CBq44NJN.mjs';
