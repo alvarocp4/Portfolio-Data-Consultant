@@ -3,7 +3,6 @@
 
 const modules = import.meta.glob('../assets/logos/*.svg', {
   eager: true,
-  // Vite v5 style: returns string URLs
   query: '?url',
   import: 'default',
 });
@@ -26,7 +25,6 @@ function toNiceName(filePath: string): string {
 
 export const logos: LogoItem[] = Object.entries(modules)
   .map(([path, url]) => ({ name: toNiceName(path), logo: url as string }))
-  // Keep only a stable subset first (you can remove slice to include all)
   .sort((a, b) => b.name.localeCompare(a.name));
 
 export type { LogoItem };

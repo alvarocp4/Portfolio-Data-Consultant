@@ -1,11 +1,12 @@
 ---
+import { certifications} from '../../data/badgesDetails';
 import type { BadgeItem } from '../../data/badges';
 import { badges } from '../../data/badges';
 import { Image } from 'astro:assets';
 
 // Importar imágenes de certificaciones
-import Snowflakelogo from '../../assets/badges/AWSCLFC02-badge.png';
-import AWSLogo from '../../assets/badges/AirflowDAG-badge.png';
+import Snowflakelogo from '../../assets/logos/Airflow-logo.svg';
+import AWSLogo from '../../assets/badges/AirflowDagAuthoring-badge.png';
 import PowerBILogo from '../../assets/badges/AirflowFundamentals-badge.png';
 // Import 
 import FabricLogo from '../../assets/logos/Jenkins-logo.svg';
@@ -17,7 +18,8 @@ interface Props { title?: string; }
 const { title } = Astro.props as Props;
 
 // badgesList sin URL
-const badgesList: BadgeItem[] = badges.map(b => ({ name: b.name, badge: b.badge }));
+const badgesList: BadgeItem[] = badges.map(b => ({ name: b.name, badge: b.badge, url: b.url }));
+const certificationsData = certifications.map(c => ({...c,logo: c.logo }));
 ---
 
 <section id="certifications" class="w-full py-10 scroll-mt-16">
@@ -27,14 +29,14 @@ const badgesList: BadgeItem[] = badges.map(b => ({ name: b.name, badge: b.badge 
       <h2 class="text-3xl md:text-4xl font-semibold text-center mb-8 text-foreground">{title}</h2>
     )}
 
-    <div class="flex flex-col gap-12">
+    <div class="flex flex-col gap-12 shadow-m">
       <!-- Sección de Certificaciones -->
       <div class="certifications-section">
         <!-- Medallas en línea horizontal -->
         <div class="flex flex-wrap justify-center gap-6">
-            {badgesList.map((badge) => (
-            <div class="flex flex-col items-center justify-center px-4 py-6 min-w-[120px] md:min-w-[140px] rounded-lg">
-                <div class="cert-image-wrapper w-50 h-50 mb-2 flex items-center justify-center bg-none p-4 rounded-xl shadow-md transition-transform" data-cert={badge.name}>
+            {badgesList.map((badge, index) => (
+            <div class="flex flex-col items-center justify-center px-4 py-6 min-w-[120px] md:min-w-[140px] rounded-lg cursor-pointer">
+                <div class="cert-image-wrapper w-50 h-50 mb-2 flex items-center justify-center bg-none p-4 rounded-xl  borde-none transition-transform" data-cert={badge.name} data-url={badge.url} data-index={index}>
                     <img src={badge.badge} alt={badge.name} class="w-full h-full object-contain" />
                 </div>
                 <span class="text-sm font-semibold text-center text-[color:var(--color-text-muted)]">{badge.name}</span>
@@ -44,65 +46,21 @@ const badgesList: BadgeItem[] = badges.map(b => ({ name: b.name, badge: b.badge 
 
         <!-- Card de información dinámica -->
         <div class="mt-8 certification-info-card grid grid-cols-1 gap-6 md:grid-cols-1" data-aos="fade-up" data-aos-delay="400">
-          <!-- SnowPro -->
-          <div class="card-surface p-4 md:p-6 w-full min-w-0" id="cert-snowpro">
+          <div class="card-surface p-4 md:p-6 w-full min-w-0" id="active-cert-card">
             <div class="flex justify-between items-center">
               <div>
-                <span class="cert-badge font-bold text-blue-600 text-lg">COF-C02</span>
-                <h4 class="mt-2 text-xl font-semibold">SnowPro Core Certification</h4>
-                <p class="mt-1 text-gray-600 text-sm">Perform data loading and transformation. Monitor and optimize virtual warehouse performance and concurrencies. Execute DDL and DML queries. Use structured, semi-structured, and unstructured data.</p>
+                <span class="text-md font-semibold learning-title">{certificationsData[0].code}</span>
+                <h4 class="mt-2 text-xl font-semibold">{certificationsData[0].title}</h4>
+                <p class="mt-1 text-gray-600 text-sm">{certificationsData[0].description}</p>
               </div>
               <div class="ml-4">
                 <Image src={Snowflakelogo} alt="Snowflake" class="w-10 h-10" />
               </div>
             </div>
           </div>
-
-          <!-- Azure -->
-          <div class="card-surface p-4 md:p-6 w-full min-w-0" id="cert-azure">
-            <div class="flex justify-between items-center">
-              <div>
-                <span class="cert-badge font-bold text-blue-600 text-lg">AZ-900</span>
-                <h4 class="mt-2 text-xl font-semibold">Azure Fundamentals</h4>
-                <p class="mt-1 text-gray-600 text-sm">Foundational knowledge of cloud services and how those services are provided with Microsoft Azure platform.</p>
-              </div>
-              <div class="ml-4">
-                <Image src={AWSLogo} alt="Microsoft" class="w-10 h-10" />
-              </div>
-            </div>
-          </div>
-
-          <!-- PowerBI -->
-          <div class="card-surface p-4 md:p-6 w-full min-w-0" id="cert-powerbi">
-            <div class="flex justify-between items-center">
-              <div>
-                <span class="cert-badge font-bold text-blue-600 text-lg">PL-300</span>
-                <h4 class="mt-2 text-xl font-semibold">Power BI Data Analyst Associate</h4>
-                <p class="mt-1 text-gray-600 text-sm">Advanced skills in data analysis, visualization, and business intelligence using Microsoft Power BI platform.</p>
-              </div>
-              <div class="ml-4">
-                <Image src={PowerBILogo} alt="Microsoft" class="w-10 h-10" />
-              </div>
-            </div>
-          </div>
-
-          <!-- Fabric -->
-          <div class="card-surface p-4 md:p-6 w-full min-w-0" id="cert-fabric">
-            <div class="flex justify-between items-center">
-              <div>
-                <span class="cert-badge font-bold text-blue-600 text-lg">DP-600</span>
-                <h4 class="mt-2 text-xl font-semibold">Fabric Analytics Engineer Associate</h4>
-                <p class="mt-1 text-gray-600 text-sm">Expertise in implementing and managing comprehensive analytics solutions using Microsoft Fabric platform.</p>
-              </div>
-              <div class="ml-4">
-                <Image src={FabricLogo} alt="Microsoft" class="w-10 h-10" />
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
-      <!-- Sección de Cursos -->
+      <!-- DE MOMENTO DEJAR, YA VERE QUE HACER -->
       <div class="courses-section">
         <h3 class="text-2xl font-bold text-center mb-6">
           <span class="text-gradient">Additional Learning</span>
@@ -124,7 +82,7 @@ const badgesList: BadgeItem[] = badges.map(b => ({ name: b.name, badge: b.badge 
         </div>
       </div>
 
-      <!-- Sección de Idiomas -->
+      <!-- DE MOMENTO DEJAR, YA VERE QUE HACER -->
       <div class="languages-section">
         <h3 class="text-2xl font-bold text-center mb-6">
           <span class="text-gradient">Languages</span>
@@ -169,6 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const isMobile = window.innerWidth <= 768;
   // Select all badge elements
   const badgeWrappers = document.querySelectorAll('.cert-image-wrapper');
+  const infoCard = document.getElementById('active-cert-card');
 
   badgeWrappers.forEach((el) => {
     const htmlElement = el as HTMLElement; // Type assertion for TypeScript
@@ -178,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
       htmlElement.addEventListener('mouseenter', () => {
         htmlElement.style.transition = 'transform 0.2s ease, filter 0.2s ease';
         htmlElement.style.cursor = 'default';
-        htmlElement.style.filter = 'brightness(1.2) drop-shadow(0 0 15px rgba(255, 165, 0, 0.6))';
+        htmlElement.style.filter = 'drop-shadow(0 5px 10px rgba(0, 0, 0, 0.4))';
       });
 
       htmlElement.addEventListener('mousemove', (e) => {
