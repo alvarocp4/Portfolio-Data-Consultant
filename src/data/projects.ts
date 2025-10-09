@@ -32,7 +32,7 @@ export const projects = [
 	{
 		title: "Intelligent Data Analysis: Clustering and Forecasting with AI",
 		techStack: "AWS • SageMaker • Python • Machine Learning",
-		description: "Event ingestion, batching, and replay; user properties and cohorts; dashboards for funnels, retention, and feature adoption.",
+		description: "Profesional Project - Focused on developing AI models for classification and prediction, enabling insights and predictive analytics.",
 		ctaText: "Follow IA →",
 		ctaLink: "https://github.com/alvarocp4",
 		icon: SageMakerIcon
