@@ -12,11 +12,10 @@ type BadgeItem = { name: string; badge: string, url: string };
 function toNiceName(filePath: string): string {
   const base = filePath.split('/').pop() || '';
   const withoutExt = base.replace(/\.[^.]+$/, '');
-  // strip trailing "-badget" or "-badge" (case-insensitive)
+  // strip trailing "-badge" (case-insensitive)
   const withoutBadge = withoutExt.replace(/-?badg?e?$/i, '');
   // normalize separators to spaces
   const normalized = withoutBadge.replace(/[_-]+/g, ' ');
-  // insert space between camelCase words: AirflowDAG -> Airflow DAG
   const spaced = normalized.replace(/([a-z])([A-Z])|([A-Z]+)([A-Z][a-z])/g, '$1$3 $2$4')
   const trimmed = spaced.trim().replace(/\s{2,}/g, ' ');
   // Title case each word
@@ -31,7 +30,7 @@ const badgeUrls: Record<string, string> = {
 
 export const badges: BadgeItem[] = Object.entries(modules)
   .map(([path, url]) => {
-    const name = toNiceName(path); // define name primero
+    const name = toNiceName(path); 
     return { name, badge: url as string, url: badgeUrls[name] || "#"};
   })
   .sort((a, b) => b.name.localeCompare(a.name));

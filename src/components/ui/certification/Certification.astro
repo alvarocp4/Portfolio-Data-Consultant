@@ -5,13 +5,13 @@ import { badges } from '../../../data/badges';
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
-// Importar imágenes de certificaciones
+// Import certification images
 import CambridgeLogo from '../../../assets/images/Cambridge-logo.png';
 
 interface Props { title?: string; }
 const { title } = Astro.props as Props;
 
-// Ajuste del tipo según la estructura real
+// Adjust based on real structure
 interface Certification {
   id: string;
   code: string;
@@ -21,19 +21,19 @@ interface Certification {
   url?: string;
 }
 
-// badgesList sin URL
+// badgesList without URL
 const badgesList: BadgeItem[] = badges.map(b => ({ name: b.name, badge: b.badge, url: b.url }));
 
-// certificationsData según la estructura real
+// certificationsData based on real structure
 const certificationsData: Certification[] = certifications.map((c) => ({
   ...c
 }));
 ---
 
 <div class="flex flex-col gap-12 shadow-m">
-  <!-- Sección de Certificaciones -->
+  <!-- Certification section -->
   <div class="certifications-section">
-    <!-- Medallas en línea horizontal -->
+    <!-- Badges -->
     <div class="flex flex-wrap justify-center gap-6">
       {badgesList.map((badge) => {
         const cert = certificationsData.find(c => c.code === badge.name || c.id === badge.name);
@@ -52,7 +52,7 @@ const certificationsData: Certification[] = certifications.map((c) => ({
       })}
     </div>
 
-    <!-- Card de información dinámica -->
+    <!-- Card of dinamic information -->
     <div class="mt-8 certification-info-card grid grid-cols-1 gap-6 md:grid-cols-1" data-aos="fade-up" data-aos-delay="400">
       <div class="card-surface p-4 md:p-6 w-full min-w-0 min-h-50" id="active-cert-card">
         <div class="flex justify-between items-center">
@@ -61,22 +61,22 @@ const certificationsData: Certification[] = certifications.map((c) => ({
             <h4 class="mt-2 text-xl font-semibold pt-5">{certificationsData[0].title}</h4>
             <p class="mt-1 text-gray-600 text-sm">{certificationsData[0].description}</p>
           </div>
-          <div class="ml-4 w-10 h-10 flex items-center">
-            <img src={certificationsData[0].logo?.src} alt={certificationsData[0].title} class="w-10 h-10" />
+          <div class="ml-4 w-10 h-10 flex items-center justify-center">
+            <img src={certificationsData[0].logo?.src} alt={certificationsData[0].title} class="max-h-full max-w-full object-contain" />
           </div>
         </div>
       </div>
     </div>
 
-    <!-- DE MOMENTO DEJAR, YA VERE QUE HACER -->
+    <!-- Languages -->
     <div class="languages-section pt-8">
       <h3 class="text-2xl font-bold text-center mb-6">
         <span class="text-gradient">Languages</span>
       </h3>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 languages-grid pt-5">
+      <div class="flex justify-center pt-5">
         <!-- B2 First -->
-        <div class="card-surface p-4 md:p-6 w-full min-w-0" data-aos="fade-up" data-aos-delay="800">
+        <div class="card-surface p-6 w-80" data-aos="fade-up" data-aos-delay="800">
           <div class="flex items-center gap-4">
             <Image src={CambridgeLogo} alt="Cambridge English" class="w-14 h-14" />
             <div>
@@ -93,12 +93,14 @@ const certificationsData: Certification[] = certifications.map((c) => ({
   </div>
 </div>
 
+<!-- Script area -->
 <script type="module">
 document.addEventListener('DOMContentLoaded', () => {
   const isMobile = window.innerWidth <= 768;
   const badgeWrappers = document.querySelectorAll('.cert-image-wrapper');
   const infoCard = document.getElementById('active-cert-card');
 
+  //Script for select badge and show 3D movement & selection for dinamic information
   badgeWrappers.forEach((htmlElement) => {
     if (!isMobile) {
       htmlElement.addEventListener('mouseenter', () => {

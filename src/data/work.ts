@@ -1,3 +1,5 @@
+//ts file for definiton of each laboral experience
+
 import jobIconRaw from '../assets/icons/job-title-icon.svg?raw';
 import companyIconRaw from '../assets/icons/company-icon.svg?raw';
 import locationIconRaw from '../assets/icons/location-icon.svg?raw';
@@ -33,7 +35,8 @@ export const work = [
       "dbt",
       "Snowflake",
       "SQL",
-      "Tableau"
+      "Tableau",
+      "English"
     ],
     industry: "Business Intelligence Developer | Global Pharmaceutical Industry",
     logo: sdgLogo,
@@ -50,10 +53,10 @@ export const work = [
       "𝗗𝗼𝗰𝘂𝗺𝗲𝗻𝘁𝗮𝘁𝗶𝗼𝗻: Develop informational documentation"
     ],
     technologies: [
+      "PostgreSQL",
       "SQL",
       "Excel",
       "Reporting",
-      "PostgreSQL",
       "Data Analytics"
     ],
     industry: "Business Intelligence Analyst | Internal Data Reporting",

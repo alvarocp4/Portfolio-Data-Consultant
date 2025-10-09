@@ -1,3 +1,4 @@
+//TS file for match the badge details and badge icons
 import AirflowLogo from "../assets/logos/Airflow-logo.svg";
 import AWSLogo from "../assets/logos/AWS-logo.svg";
 

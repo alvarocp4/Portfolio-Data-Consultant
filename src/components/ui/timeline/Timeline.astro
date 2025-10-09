@@ -1,4 +1,5 @@
 ---
+//Define the diferent items inside work.ts
 interface Item {
   title: string;
   period: string;
@@ -49,7 +50,7 @@ const companyIcon = (props.icons?.company ?? normalizeIcon(companyIconRaw));
 const locationIcon = (props.icons?.location ?? normalizeIcon(locationIconRaw));
 const { items, centered = true } = props;
 ---
-
+<!--Create two different type of Timeline: mobile and computer -->
 {centered ? (
   <div class="relative mx-auto max-w-5xl px-0 md:px-0">
     <!-- Center vertical line -->
