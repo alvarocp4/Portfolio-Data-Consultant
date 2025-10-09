@@ -4,10 +4,12 @@ import { workIcons } from "../../data/work";
 
 interface ExperienceItem {
   title: string;
+  period: string;
   company: string;
   region: string;
-  description: string;
+  description: string[];
   technologies?: string[];
+  industry: string;
 }
 
 interface Props {

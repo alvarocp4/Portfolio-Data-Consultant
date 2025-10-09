@@ -1,0 +1,79 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/sections/Footer.astro';
+import Header from '../components/sections/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import HeroSection from '../components/sections/HeroSection.astro';
+import PorjectS from '../components/sections/Projects.astro';
+import SkillsSection from '../components/sections/SkillsSection.astro';
+import { skills } from '../data/skills';
+import WorkExperience from '../components/sections/WorkExperience.astro';
+import { work } from '../data/work';
+import Certifiacations from '../components/sections/Certificactions.astro';
+import { badges } from '../data/badges';
+import Studies from '../components/sections/Studies.astro';
+import { studies } from '../data/studies';
+import Carousel from '../components/ui/carousel/Carousel.astro';
+import { logos } from '../data/logos';
+import  SpeedInsights  from "@vercel/speed-insights/astro";
+import Analytics from '@vercel/analytics/astro';
+import ArrowSeparator from '../components/ui/separator/ArrowSeparator.astro'
+import GlowLineSeparator from '../components/ui/separator/GlowLineSeparator.astro'
+
+// Logos
+import astroLogo from '../assets/logos/Astro-logo.svg';
+import googleAdsLogo from '../assets/logos/GoogleAds-logo.svg';
+import posthogLogo from '../assets/logos/posthog-logo.svg';
+import notionLogo from '../assets/logos/Notion-logo.svg';
+import figmaLogo from '../assets/logos/Figma-logo.svg';
+import Projects from '@/components/sections/Projects.astro';
+
+// skills are imported from src/data/skills
+---
+
+<!doctype html>
+<html lang="en" data-theme="dark" class="dark scroll-smooth">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <!-- JSON-LD: Organization -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'Site Author',
+      url: new URL('/', Astro.site).toString(),
+      logo: new URL('/favicon.svg', Astro.site).toString(),
+      sameAs: [
+        'https://github.com/alvarocp4/Portfolio-Data-Consultant',
+        'https://www.linkedin.com/in/alvarocarmonapedrajas-bd-da-bi/',
+      ],
+    })} />
+	</head>
+	<body>
+		<Header />
+		<main>
+      <HeroSection
+        title="Alvaro Carmona - Portfolio"
+        subtitle="Data Engineer | Data Consultant"
+        showCTA
+        primaryCTA={{ text: 'View Experience', href: '/#experience' }}
+        secondaryCTA={{ text: 'View Projects', href: '/#projects' }}
+      />
+     
+
+    <section class="py-6">
+      <ArrowSeparator />
+      <SkillsSection title="Skills & Tools"/>   
+      <ArrowSeparator />
+      <WorkExperience title="Work Experience" items={work} />
+      <ArrowSeparator />
+      <Certifiacations title="Certifications"/>
+      <ArrowSeparator />
+      <PorjectS title="Projects" />
+      <GlowLineSeparator />
+    </section>
+    <SpeedInsights />
+    <Analytics />
+		</main>
+		<Footer />
+	</body>
+</html>
