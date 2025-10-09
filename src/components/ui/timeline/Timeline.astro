@@ -136,7 +136,7 @@ const { items, centered = true } = props;
                 {item.industry}
               </p>
             </div>
-            <ul class="text-[color:var(--color-text-secondary)] m-0"><li>{item.description[0]}</li><li>{item.description[1]}</li><li>{item.description[2]}</li><li>{item.description[3]}</li><li>{item.description[4]}</li></ul>
+            <ul class="text-[color:var(--color-text-secondary)] text-lg m-0"><li>{item.description[0]}</li><li>{item.description[1]}</li><li>{item.description[2]}</li><li>{item.description[3]}</li><li>{item.description[4]}</li></ul>
             {item.technologies && item.technologies.length > 0 && (
               <div class="mt-3 flex flex-wrap gap-2">
                 {item.technologies.map((tech) => (
