@@ -99,7 +99,94 @@ document.addEventListener('DOMContentLoaded', () => {
   const isMobile = window.innerWidth <= 768;
   const badgeWrappers = document.querySelectorAll('.cert-image-wrapper');
   const infoCard = document.getElementById('active-cert-card');
+  const badgeContainer = document.querySelector('.certifications-section > div.flex.flex-wrap');
+if (isMobile && badgeContainer && infoCard) {
+  badgeContainer.style.display = 'flex';
+  badgeContainer.style.flexWrap = 'nowrap';
+  badgeContainer.style.overflowX = 'auto';
+  badgeContainer.style.scrollSnapType = 'x mandatory';
+  badgeContainer.style.scrollBehavior = 'smooth';
+  badgeContainer.style.gap = '16px';
 
+  // --- Duplicar badges al final para efecto infinito ---
+  const badgesArray = Array.from(badgeWrappers);
+  badgesArray.forEach(badge => {
+    const clone = badge.cloneNode(true);
+    badgeContainer.appendChild(clone);
+  });
+
+  const allBadges = badgeContainer.querySelectorAll('.cert-image-wrapper');
+  allBadges.forEach((badge) => {
+    badge.style.minWidth = '70%';
+    badge.style.flexShrink = '0';
+    badge.style.scrollSnapAlign = 'center';
+    badge.style.transition = 'transform 0.3s';
+  });
+
+  // --- Ajustar padding y scroll inicial ---
+  setTimeout(() => {
+    const badgeWidth = allBadges[0].offsetWidth;
+    badgeContainer.style.padding = `0 ${window.innerWidth / 2 - badgeWidth / 2}px`;
+    badgeContainer.scrollLeft = 0; // empezar desde la primera badge
+    updateActiveBadgeInfo();
+  }, 50);
+
+  // --- Función para actualizar badge central e info ---
+  const updateActiveBadgeInfo = () => {
+    let closestBadge = null;
+    let closestDistance = Infinity;
+
+    allBadges.forEach((badge) => {
+      const rect = badge.getBoundingClientRect();
+      const distance = Math.abs(rect.left + rect.width / 2 - window.innerWidth / 2);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestBadge = badge;
+      }
+
+      // Escalado dinámico de todas las badges según distancia al centro
+      const scale = Math.max(0.3, 1 - distance / window.innerWidth);
+      badge.style.transform = `scale(${scale})`;
+    });
+
+    if (closestBadge) {
+      const certData = JSON.parse(closestBadge.dataset.certJson || '{}');
+      const codeEl = infoCard.querySelector('.learning-title');
+      const titleEl = infoCard.querySelector('h4');
+      const descEl = infoCard.querySelector('p');
+      const imgEl = infoCard.querySelector('img');
+
+      if (codeEl) codeEl.textContent = certData.code;
+      if (titleEl) titleEl.textContent = certData.title;
+      if (descEl) descEl.textContent = certData.description;
+      if (imgEl) imgEl.src = certData.logo?.src;
+    }
+  };
+
+  // --- Scroll infinito y actualización ---
+  badgeContainer.addEventListener('scroll', () => {
+    requestAnimationFrame(updateActiveBadgeInfo);
+  });
+
+  // --- Detectar touch para ajustar scroll al final ---
+  let isTouching = false;
+
+  badgeContainer.addEventListener('touchstart', () => {
+    isTouching = true;
+  });
+
+  badgeContainer.addEventListener('touchend', () => {
+    isTouching = false;
+    // Esperar a que termine el momentum del scroll
+    setTimeout(() => {
+      const scrollLeft = badgeContainer.scrollLeft;
+      const totalWidth = badgeContainer.scrollWidth / 2; // mitad porque duplicamos
+      if (scrollLeft >= totalWidth) {
+        badgeContainer.scrollLeft = scrollLeft - totalWidth; // ajustar sin animación
+      }
+    }, 50);
+  });
+}
   //Script for select badge and show 3D movement & selection for dinamic information
   badgeWrappers.forEach((htmlElement) => {
     if (!isMobile) {
