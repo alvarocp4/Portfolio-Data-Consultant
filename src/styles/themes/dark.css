@@ -1,17 +1,16 @@
-/* Dark theme tokens - nueva combinación pastel */
 [data-theme="dark"],
 .dark {
   /* Primary Brand Colors (Lavender & Coral Pastel) */
-  --accent: #D8A3FF;       /* Lavanda pastel */
-  --accent-dark: #C07BFF;  /* Lavanda un poco más intensa */
+  --accent: #D8A3FF;       
+  --accent-dark: #C07BFF; 
   --accent-rgb: 216, 163, 255;
 
   /* Neutral Colors */
-  --black: 240, 240, 245;   /* gris muy claro para texto principal */
-  --gray: 170, 175, 185;    /* gris neutro */
-  --gray-light: 60, 65, 75; /* gris para bordes y sombras suaves */
+  --black: 240, 240, 245;  
+  --gray: 170, 175, 185;   
+  --gray-light: 60, 65, 75; 
   --gray-dark: 200, 205, 210;
-  --background: #12121A;    /* base dark suave */
+  --background: #12121A;   
 
   /* Semantic Color Tokens */
   --color-text-primary: rgb(var(--black));

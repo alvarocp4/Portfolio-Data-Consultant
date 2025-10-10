@@ -1,16 +1,15 @@
-/* Light theme tokens - pastel complementary (lila más oscuro) */
 [data-theme="light"] {
   /* Primary Brand Colors (Lavender & Coral Pastel) */
-  --accent: #D4A0FF;       /* lavanda más oscuro */
-  --accent-dark: #C07BFF;  /* lavanda un poco más intenso */
+  --accent: #D8A3FF;       
+  --accent-dark: #C07BFF;  
   --accent-rgb: 212, 160, 255;
 
   /* Neutral Colors */
-  --black: 25, 28, 35;       /* texto principal */
-  --gray: 140, 145, 160;     /* gris suave */
-  --gray-light: 245, 245, 250; /* fondo y bordes claros */
-  --gray-dark: 80, 85, 100;  /* texto secundario */
-  --background: #FDFCFF;     /* base muy clara, pastel */
+  --black: 25, 28, 35;       
+  --gray: 140, 145, 160;     
+  --gray-light: 245, 245, 250;
+  --gray-dark: 80, 85, 100; 
+  --background: #FDFCFF;    
   
   /* Semantic Color Tokens */
   --color-text-primary: rgb(var(--black));
@@ -26,22 +25,22 @@
 
   /* Map to Starwind token variables */
   --foreground: rgb(var(--black));
-  --card: #FFFFFF;
+  --card: rgba(255, 255, 255, 0.05);
   --card-foreground: rgb(var(--black));
   --popover: #FFFFFF;
   --popover-foreground: rgb(var(--black));
   --primary: var(--accent);
   --primary-foreground: #FFFFFF;
-  --secondary: #BFFFD8;            /* verde menta pastel */
+  --secondary: #BFFFD8;            
   --secondary-foreground: rgb(var(--black));
   --muted: rgba(245, 245, 250, 0.6);
   --muted-foreground: rgb(var(--gray));
 
   /* Semantic colors */
-  --success: #A3FFD8;   /* verde menta pastel */
-  --warning: #FFE3A3;   /* naranja pastel */
-  --error: #FFA3A3;     /* rosa/coral pastel */
-  --info: #A3C7FF;      /* azul pastel */
+  --success: #A3FFD8;  
+  --warning: #FFE3A3;   
+  --error: #FFA3A3;     
+  --info: #A3C7FF;      
 
   --info-foreground: #082f49;
   --success-foreground: #052e16;
