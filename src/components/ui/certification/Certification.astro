@@ -59,7 +59,7 @@ const certificationsData: Certification[] = certifications.map((c) => ({
           <div>
             <span class="text-md font-semibold learning-title rounded-full px-3 py-1" style="background: rgba(var(--accent-rgb),0.1); color: var(--accent); border: 1px solid rgba(var(--accent-rgb),0.3);">{certificationsData[0].code}</span>
             <h4 class="mt-2 text-xl font-semibold pt-5">{certificationsData[0].title}</h4>
-            <p class="mt-1 text-gray-600 text-sm">{certificationsData[0].description}</p>
+            <p class="mt-1 text-gray-300 text-sm">{certificationsData[0].description}</p>
           </div>
           <div class="ml-4 w-10 h-10 flex items-center justify-center">
             <img src={certificationsData[0].logo?.src} alt={certificationsData[0].title} class="max-h-full max-w-full object-contain" />

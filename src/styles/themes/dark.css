@@ -9,7 +9,7 @@
   --black: 240, 240, 245;  
   --gray: 170, 175, 185;   
   --gray-light: 60, 65, 75; 
-  --gray-dark: 200, 205, 210;
+  --gray-dark: 225, 230, 235;
   --background: #12121A;   
 
   /* Semantic Color Tokens */
@@ -42,26 +42,26 @@
     0 8px 24px rgba(0, 0, 0, 0.15),
     0 16px 32px rgba(0, 0, 0, 0.15);
 
-  /* Map to Starwind token variables */
-  --background: #1B1B2F;            /* azul grisáceo oscuro */
-  --foreground: rgb(235, 236, 238);  /* texto claro */
-  --card: rgba(240, 240, 245, 0.03);
+
+  --background: #1B1B2F;            
+  --foreground: rgb(235, 236, 238); 
+  --card: rgba(30, 30, 45, 0.75);
   --card-foreground: rgb(235, 236, 238);
   --popover: #2A2A40;
   --popover-foreground: rgb(235, 236, 238);
-  --primary: #D8A3FF;                /* lavanda pastel */
+  --primary: #D8A3FF;           
   --primary-foreground: #1B1B2F;
-  --secondary: #A3FFD8;              /* menta suave */
+  --secondary: #A3FFD8;             
   --secondary-foreground: rgb(235, 236, 238);
   --muted: rgba(240, 240, 245, 0.05);
   --muted-foreground: rgb(170, 175, 185);
   --accent-foreground: #1B1B2F;
 
   /* Semantic colors */
-  --success: #A3FFCE;   /* verde menta pastel */
-  --warning: #FFDCA3;   /* naranja pastel suave */
-  --error: #FF9CA3;     /* coral pastel */
-  --info: #A3C7FF;      /* azul pastel */
+  --success: #A3FFCE; 
+  --warning: #FFDCA3;  
+  --error: #FF9CA3;    
+  --info: #A3C7FF;   
 
   --info-foreground: #0A1A35;
   --success-foreground: #0A2A1A;
